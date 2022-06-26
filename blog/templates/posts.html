@@ -1,0 +1,10 @@
+{% extends 'layout.html' %} {% block content %}
+<h1>posts</h1>
+{%for post in posts%}
+
+<h2>{{post.title}}</h2>
+<h3>{{post.date|date:"M d Y"|upper}}</h3>
+<p>{{post.description|striptags|truncatechars:100}}</p>
+<img src="{{post.image.url}}" alt="{{post.title}}" />
+<a href="{% url 'post_detail' post.id%}">See more...</a>
+{%if post.url%} {%endif%} {% endfor %} {% endblock %}
