@@ -1,8 +1,58 @@
-{% extends 'layout.html' %} {% block content %}
-<h1>Home</h1>
-{%for project in projects%}
-<p>{{project.title}}</p>
-<img src="{{project.image.url}}" alt="{{project.title}}" />
-{%if project.url%}
-<a href="{{project.url}}">{{project.url}}</a>
-{%endif%} {% endfor %} {% endblock %}
+{% extends 'layout.html' %} {% block content %} {% load static %}
+
+<header class="row bg-black">
+  <div class="col-md-4">
+    <img src="{% static 'portfolio/profilepic.jpg' %}" class="img-fluid" />
+  </div>
+
+  <div class="col-md-8 my-auto p-4">
+    <h1>I am <strong>Jesus Mirena</strong></h1>
+    <h3>I'm a JavaScript FullStack Developer</h3>
+    <p>
+      My journey in software development starts when I was 16YO when I started
+      coding watching some courses at Udemy, for a few months I was developing
+      my personal projects and after a while, I signed up at Henry Bootcamp to
+      learn the technologies I was interested in. While I was studying at the
+      Bootcamp I had the opportunity to be a teaching assistant where I led a
+      team of 20 people. Among my projects I could develop a weather app, and a
+      full-stack application in which I used the data of an external API, also,
+      together with a team of 6 people I developed an e-commerce as a final
+      project.
+    </p>
+    <a
+      class="btn btn-primary btn-lg rounded-0 my-3"
+      href="{% static 'portfolio/cv.pdf' %}"
+      >Download my CV</a
+    >
+  </div>
+</header>
+
+<div class="row my-4 text-center">
+  <h3>My Projects</h3>
+  <p>Here are some of my projects</p>
+
+  {% for project in projects %}
+  <div class="col-md-4 p-4">
+    <div class="card bg-black card-project">
+      <img src="{{project.image.url }}" class="card-img-top" />
+
+      <div class="card-body">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+
+        {% if project.url %}
+        <a
+          href="{{project.url}}"
+          class="btn btn-outline-light rounded-0 btn-sm"
+          target="__blank"
+          rel="noreferrer"
+          >Visit the Project</a
+        >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
